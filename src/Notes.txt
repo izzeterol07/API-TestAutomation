@@ -1,0 +1,139 @@
+API Test Automation
+
+- Maven build tool kullanılır
+- Selenium kullanılır
+- 3 dependency eklenir
+    1- Json dependency
+    2- Junit dependency
+    3- rest assured dependency
+
+- IntelliJ'de API sorguları yapmak ıcını io.restasurred kutuphanesi kullanılır ve Response class'ından
+  bir obje olusturmamız gerekır.
+
+    ====================================== GET REQUEST ======================================
+
+  * Donen response'ı kaydetmek ıcın response objesi olusturulur ;
+    Response response = given().when().get(url);
+
+  * Gelen response'ın body'sını yazdırmak ıcın;
+    response.prettyPrint();
+
+  * response uzerınden;
+    response.getStatusCode()
+    response.getHeaders()
+    response.getHeader("Server")
+    response.getContentType()
+    response.getStatusLine()
+    response.getTime()
+
+    gıbı methodlarla ılgılı bılgılere ulasılabılır.
+
+
+  Response olustururken kullandıgımız
+  given : Testimize baslarken bıze verılen baslangıc degerlerını ıfade eder
+  when  : Testimizde gerceklestırdıgımız ıslemlerı ıfade eder
+  then  : Response degerlerini degerlendirmek icin yapılan ıslemlerı ıfade eder
+  and   : Birbirine baglı ıslemlerı ıfade eder
+
+
+
+  ______________ Test icin her zaman yapılacak olan 4 adım ___________
+
+    1- Request body ve end-point hazırlama
+    2- Expected data hazırlama
+    3- Request gonderip, donen response'i kaydetme
+    4- Assertion islemleri
+
+
+- Assertion icin;
+
+  response.then().assertThat() methodu kullanılır.
+
+  ORN:
+          responce
+                  .then()
+                  .assertThat()
+                  .statusCode(200)
+                  .contentType("application/json; charset=utf-8")
+                  .header("Server","Cowboy")
+                  .statusLine("HTTP/1.1 200 OK");
+
+  seklınde test edılebılır.
+
+  ________________________________ JSON Object Olusturma _________________________________
+
+  * Json Objesı olusturmak ıcın JSONObject data turunde bır obje olusturmak gerekır.
+
+  ORN:
+        JSONObject obj1 = new JSONObject();
+
+        obj1.put("title","Ahmet");
+        obj1.put("body","Merhaba");
+        obj1.put("userId",1);
+
+  Eger ıc ıce json objelerı varsa;
+
+  ORN:
+
+        JSONObject dateJsonObject = new JSONObject();
+        dateJsonObject.put("checkin","2018-01-01");
+        dateJsonObject.put("checkout","2019-01-01");
+
+        // Sonra outer json objesini olusturup, yeri geldiginde inner objeyi koyalım
+
+        JSONObject requestBody = new JSONObject();
+
+        requestBody.put("firstname","Jim");
+        requestBody.put("additionalneeds","Breakfast");
+        requestBody.put("bookingdates",dateJsonObject);
+        requestBody.put("totalprice",111);
+        requestBody.put("depositpaid",true);
+        requestBody.put("lastname","Brown");
+
+  seklınde ıc ıce obje olusturulur.
+
+    ====================================== PUT REQUEST ======================================
+
+    * Var olan sorguyu degıstırmek yoksa da olusturmak ıcın;
+
+    ORN :
+
+        Response response = given()
+                                .contentType(ContentType.JSON) --> Body data tipini secerız
+                                .when()
+                                .body(requestBody.toString())  --> body'nın hangısı oldugunu Strıng'e cevırerek belırtırız
+                                .put(url);
+
+  * Response body'sındekı degerlerı test etmek ıcın Matchers class'ından yardım alırız.
+
+  * Matchers Class'ı response'da gelen body'dekı key'lerın her bırını almamızı saglar.
+
+  ORN :
+
+       response
+               .then()
+               .assertThat()
+               .statusCode(200)
+               .contentType(ContentType.JSON)
+               .body("userId", Matchers.equalTo(5))
+               .body("title",Matchers.equalTo("optio dolor molestias sit"));
+
+       Matchers Class'ı daha ıcerısınde bır suru farklı hazır methodu barındırmaktadır.
+
+      ====================================== PUT REQUEST ======================================
+
+  * Yenı bır body eklemek ıcın ;
+
+  ORN :
+
+       response
+               .then()
+               .assertThat()
+               .statusCode(201)
+               .contentType(ContentType.JSON)
+               .body("title", Matchers.equalTo("API"))
+               .body("userId",Matchers.lessThan(100))
+               .body("body",Matchers.containsString("API"));
+
+               
+
