@@ -1,4 +1,4 @@
-API Test Automation
+                                            API Test Automation
 
 - Maven build tool kullanılır
 - Selenium kullanılır
@@ -120,7 +120,7 @@ API Test Automation
 
        Matchers Class'ı daha ıcerısınde bır suru farklı hazır methodu barındırmaktadır.
 
-      ====================================== PUT REQUEST ======================================
+      ====================================== POST REQUEST ======================================
 
   * Yenı bır body eklemek ıcın ;
 
@@ -135,5 +135,20 @@ API Test Automation
                .body("userId",Matchers.lessThan(100))
                .body("body",Matchers.containsString("API"));
 
-               
+
+  - Tekrarlardan kurtulmak ve daha sade bır kod yazmak ıcın body tekrarları ve Matchers tekrarlarından kurtulabılırız;
+
+                response
+                        .then()
+                        .assertThat()
+                        .statusCode(200)
+                        .contentType(ContentType.JSON)
+                        .body("firstname",equalTo("Mark"),
+                                "lastname",equalTo("Jackson"),
+                                "totalprice",lessThan(1000),
+                                "depositpaid",equalTo(true),
+                                "additionalneeds",nullValue());
+
+                ! Matchers class'ını statıc olarak import etmemız gerekır.
+
 

@@ -120,3 +120,21 @@ C08_Post_ResponseBodyTesti
         "userId" degerinin 100'den kucuk oldugunu
         "body" nin "API" kelimesi icerdigini
     test edin.
+
+------------------------------------------------------------------------------------------------------------------------
+
+C09_Get_TestYaparkenTekrarlardanKurtulma
+
+        https://restful-booker.herokuapp.com/booking/10 url’ine bir GET request gonderdigimizde
+        donen Response’un,
+            status code’unun 200,
+            ve content type’inin application-json,
+            ve response body’sindeki
+                "firstname“in, "Susan",
+                ve "lastname“in, "Jackson",
+                ve "totalprice“in, 1000'den kuuck oldugunu,
+                ve "depositpaid“in, false,
+                ve "additionalneeds“in, bos bırakılmadıgını
+        oldugunu test edin
+
+------------------------------------------------------------------------------------------------------------------------
