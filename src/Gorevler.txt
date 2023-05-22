@@ -138,3 +138,75 @@ C09_Get_TestYaparkenTekrarlardanKurtulma
         oldugunu test edin
 
 ------------------------------------------------------------------------------------------------------------------------
+
+C10_JsonPathKullanim
+
+        Asagıdakı JSON obje'sını olusturup key'leri yazdırın.
+
+        {
+        "firstName":"Ahmet",
+        "lastName":"Bulur",
+        "address":{
+                "streetAddress":"Kurtulus cad.",
+                "city":"Ankara",
+                "postalCode":"06100" },
+        "age":49,
+        "phoneNumbers":[
+           {
+            "number":"532-555 55 55",
+            "type":"cep" },
+           {
+            "number":"0312-123 4567",
+            "type":"ev " }
+                ]
+        }
+
+------------------------------------------------------------------------------------------------------------------------
+
+C11_Post_JsonPathIleBodyTesti
+
+        https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
+        gonderdigimizde
+
+        {
+        "firstname" : "Ahmet",
+        "lastname" : “Bulut",
+        "totalprice" : 500,
+        "depositpaid" : false,
+        "bookingdates" : {
+            "checkin" : "2023-01-10",
+            "checkout" : "2023-01-20"
+            },
+        "additionalneeds" : "wi-fi"
+        }
+
+        donen Response’un,
+        status code’unun 200,
+        ve content type’inin application-json,
+        ve response body’sindeki
+        "firstname“in,"Ahmet",
+        ve "lastname“in, "Bulut",
+        ve "totalprice“in,500,
+        ve "depositpaid“in,false,
+        ve "checkin" tarihinin 2023-01-10
+        ve "checkout" tarihinin 2023-01-20
+        ve "additionalneeds“in,"wi-fi"
+
+        oldugunu test edin
+
+------------------------------------------------------------------------------------------------------------------------
+
+C12_Get_ResponseBodyTestiListKullanimi
+
+        http://dummy.restapiexample.com/api/v1/employees url'ine bir GET request yolladigimizda
+        donen Response'in
+
+            status code'unun 200,
+            ve content type'inin Aplication.JSON,
+            ve response body'sindeki
+            employees sayisinin 24
+            ve employee'lerden birinin "Ashton Cox"
+            ve girilen yaslar icinde 61,21 ve 35 degerinin oldugunu
+        test edin.
+
+------------------------------------------------------------------------------------------------------------------------

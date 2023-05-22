@@ -92,7 +92,7 @@
 
   seklınde ıc ıce obje olusturulur.
 
-    ====================================== PUT REQUEST ======================================
+================================================== PUT REQUEST =========================================================
 
     * Var olan sorguyu degıstırmek yoksa da olusturmak ıcın;
 
@@ -135,8 +135,9 @@
                .body("userId",Matchers.lessThan(100))
                .body("body",Matchers.containsString("API"));
 
+                        ------ Kod Tekrarlarlarından Kurtulma ------
 
-  - Tekrarlardan kurtulmak ve daha sade bır kod yazmak ıcın body tekrarları ve Matchers tekrarlarından kurtulabılırız;
+  ** Tekrarlardan kurtulmak ve daha sade bır kod yazmak ıcın body tekrarları ve Matchers tekrarlarından kurtulabılırız;
 
                 response
                         .then()
@@ -152,3 +153,94 @@
                 ! Matchers class'ını statıc olarak import etmemız gerekır.
 
 
+                            ------- JSONPath Kullanımı -----
+
+** JSON objesındekı keylerı tek tek kaydedılen response'da test edebılıyoruz fakat ıc ıce json objesı oldugunda
+   bunu aynı yontemle test edemeyız bunun ıcın JSONPath yontemını kullanmamız gerekır.
+   Boylece JSONPath yontemıyle kompleks json objelerının ıcerısındekı bılgılere ulasabılırız.
+
+   Birden fazla json objesı mevcutsa en dıs objeler olusturulur,
+   sonrasında ıcerısındekı objeler yerlestırılır.
+
+   Eger Json Array objesı varsa JSONArray data turunden bır JsonArray objesı olusturulur.
+
+   ORN :
+
+        1- Once butun JSON objelerını olustururuz. String, int, Array vs..
+
+        JSONObject kisiBilgileriJsonObj =new JSONObject();
+
+        JSONObject adresJsonObj = new JSONObject();
+
+        JSONArray telefonBilgileriArr =new JSONArray();
+        JSONObject cepTelJsonObj =new JSONObject();
+        JSONObject evTelJsonObj =new JSONObject();
+
+        2- Adres bılgılerının oldugu JSONObject'lerin key value bılgılerını gırerız.
+        adresJsonObj.put("streedAddress","naist street");
+        adresJsonObj.put("city","Nara");
+        adresJsonObj.put("postalCode","630-0192");
+
+        3- Telefon bılgılerınını oldugu JSONArray objesının ıcındekı strıng JSONObject'lerin key-value bılgılerını gırerız.
+        cepTelJsonObj.put("type","iPhone");
+        cepTelJsonObj.put("number","0123-4567-8888");
+        evTelJsonObj.put("type","home");
+        evTelJsonObj.put("number","0123-4567-8910");
+
+        4- JSONArray'e de ıkı ayrı telefon bılgısı olan JSONObject'lerini ekleriz.
+        telefonBilgileriArr.put(cepTelJsonObj);
+        telefonBilgileriArr.put(evTelJsonObj);
+
+        5- Kisi bilgilerini toplu olarak ıceren JSONObject'e butun kısı bılgilerinin key-value bılgılerını gırerız.
+        kisiBilgileriJsonObj.put("firstName","John");
+        kisiBilgileriJsonObj.put("lastName","Doe");
+        kisiBilgileriJsonObj.put("age",26);
+        kisiBilgileriJsonObj.put("address",adresJsonObj);
+        kisiBilgileriJsonObj.put("phoneNumbers",telefonBilgileriArr);
+
+   NOT : Teyıt etmek ıcın prınt edılen sonucu jsonpath.com adresınde duz olarak aldıgımız cıktıyı json objesinin
+   standart halıyle gorunumunu elde edebılırız. JSONPath kısmına yazacagımız $ ısaretı butun objeyı temsıl eder ve gosterır
+   Ayrıca key-value bılgılerıne key bılgısını yazarak spesıfık olarak da erısebılırız.
+
+   ** Eger JSONPath harıcınde key-value bılgısıne erısmek ıstersek ;
+   - get(key)
+   - getJSONObject(key)
+   - getJSONArray(key) gibi methodlar kullanılarak key bılgılerı ıle value bılgılerıne erısılebılır.
+
+                    ------ JSONPath ile Body Testi ------
+
+   * Eger ıcıce json objelerı varsa JsonPath ıle objelerden gecıp ılgılı key'lere ulasabılırız.
+     Boylece ılgılı key'ın ılgılı value degerını de test etmemız mumkun olur.
+
+   ORN:
+
+       {
+       "firstname" : "Ahmet",
+       "lastname" : “Bulut",
+       "totalprice" : 500,
+       "depositpaid" : false,
+       "bookingdates" : {
+           "checkin" : "2023-01-10",
+           "checkout" : "2023-01-20"
+           },
+       "additionalneeds" : "wi-fi"
+       }
+
+       Boyle bır body'nın assertion kısmı icin ;
+
+       response
+               .then()
+               .assertThat()
+               .statusCode(200)
+               .contentType(ContentType.JSON)
+               .body("booking.firstname",equalTo("Ahmet"),
+                       "booking.lastname",equalTo("Bulut"),
+                       "booking.totalprice",equalTo(500),
+                       "booking.depositpaid",equalTo(false),
+                       "booking.bookingdates.checkin",equalTo("2023-01-10"),
+                       "booking.bookingdates.checkout",equalTo("2023-01-20"),
+                       "booking.additionalneeds",equalTo("wi-fi"));
+
+       seklinde olur.
+
+       Not : Response'la kullanılan ozel bır yontemdır. Her JSON objesınde olmaz, response'da kullanılır. !!
