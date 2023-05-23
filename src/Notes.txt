@@ -244,3 +244,56 @@
        seklinde olur.
 
        Not : Response'la kullanılan ozel bır yontemdır. Her JSON objesınde olmaz, response'da kullanılır. !!
+
+
+       ------------------------------------ List Kullanımım ------------------------------------
+
+       * JSON lıst ıle ugrastıgımızda, yanı array'ı ıle ugrastıgımızda JSONPath yontemı kullanılır.
+         Test ıcın ıse Matchers class'ından methodlar kullanılır.
+
+       ORN :
+
+            response
+                    .then()
+                    .assertThat()
+                    .statusCode(200)
+                    .contentType(ContentType.JSON)
+                    .body("data.id", hasSize(24),
+                            "data.employee_name",hasItem("Ashton Cox"),
+                            "data.employee_age",hasItems(61,21,35));
+
+       ------------------------------------ JUnit ASSERT (Hard Assert) ------------------------------------
+
+   * JSON objesınce ıcerıye gırmeler zor, JsonPath ıle kolay oluyordu.
+     Bu sebeple response bılgılerını jsonPath'e cevırmemız gerekır.
+
+     Sonrasında Junit yada TestNG assertion ile test ıslemı gerceklestırılır.
+
+     ORN (Junit Assertion) :
+
+                JsonPath responseJsonPath = response.jsonPath();
+
+                Assert.assertEquals(expectedData.get("id"),responseJsonPath.getInt("id"));
+                Assert.assertEquals(expectedData.get("userId"),responseJsonPath.getInt("userId"));
+                Assert.assertEquals(expectedData.get("title"),responseJsonPath.getString("title"));
+                Assert.assertEquals(expectedData.get("body"),responseJsonPath.getString("body"));
+
+     * kompleks json objelerı ıcın ;
+
+     ORN :
+                JsonPath responseJsonPath = response.jsonPath();
+
+               Assert.assertEquals(expectedData.getJSONObject("booking").get("firstname"),
+                                   responseJsonPath.get("booking.firstname"));
+               Assert.assertEquals(expectedData.getJSONObject("booking").get("lastname"),
+                                   responseJsonPath.get("booking.lastname"));
+               Assert.assertEquals(expectedData.getJSONObject("booking").get("totalprice"),
+                                   responseJsonPath.get("booking.totalprice"));
+               Assert.assertEquals(expectedData.getJSONObject("booking").get("depositpaid"),
+                                   responseJsonPath.get("booking.depositpaid"));
+               Assert.assertEquals(expectedData.getJSONObject("booking").getJSONObject("bookingdates").get("checkin"),
+                                   responseJsonPath.get("booking.bookingdates.checkin"));
+               Assert.assertEquals(expectedData.getJSONObject("booking").getJSONObject("bookingdates").get("checkout"),
+                                   responseJsonPath.get("booking.bookingdates.checkout"));
+               Assert.assertEquals(expectedData.getJSONObject("booking").get("additionalneeds"),
+                                   responseJsonPath.get("booking.additionalneeds"));

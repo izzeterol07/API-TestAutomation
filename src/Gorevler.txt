@@ -210,3 +210,58 @@ C12_Get_ResponseBodyTestiListKullanimi
         test edin.
 
 ------------------------------------------------------------------------------------------------------------------------
+
+C13_Get_ExpectedDataOlusturmaVeJsonPathIleJunitAssertion
+
+        https://jsonplaceholder.typicode.com/posts/22 url'ine bir GET request
+        yolladigimizda donen response body’sinin asagida verilen ile ayni oldugunutest ediniz
+
+        Response body :
+
+        {
+        "userId": 3,
+        "id": 22,
+        "title": "dolor sint quo a velit explicabo quia nam",
+        "body": "eos qui et ipsum ipsam suscipit autsed omnis non odioexpedita ear
+        um mollitia molestiae aut atque rem suscipitnam impedit esse"
+        }
+
+------------------------------------------------------------------------------------------------------------------------
+
+C14_Post_ExpectedDataVeJsonPathIleJunitAssertion
+
+        https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
+        gonderdigimizde donen response’un id haric asagidaki gibi oldugunu test edin.
+
+        Request body
+
+        {
+            "firstname" : "Ahmet",
+            "lastname" : “Bulut",
+            "totalprice" : 500,
+            "depositpaid" : false,
+            "bookingdates" : {
+            "checkin" : "2021-06-01",
+            "checkout" : "2021-06-10"
+            },
+            "additionalneeds" : "wi-fi"
+        }
+
+
+        Expected Response Body
+        {
+            "bookingid": 24,
+            "booking": {
+                "firstname": "Ahmet",
+                "lastname": "Bulut",
+                "totalprice": 500,
+                "depositpaid": false,
+                "bookingdates": {
+                    "checkin": "2021-06-01",
+                    "checkout": "2021-06-10"
+                },
+                "additionalneeds": "wi-fi"
+            }
+        }
+
+------------------------------------------------------------------------------------------------------------------------
