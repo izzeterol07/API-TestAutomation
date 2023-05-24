@@ -1,3 +1,5 @@
+package Tests;
+
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -7,7 +9,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class C13_Get_ExpectedDataOlusturmaVeJsonPathIleJunitAssertion {
+public class C13_Get_JsonPathVeJunitAssertionIleExpectedDataOlusturmaVeTestEtme {
 
     @Test
     public void get01() {

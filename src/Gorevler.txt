@@ -34,7 +34,7 @@ C03_Get_ResponseBilgileriAssertion
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C04_JsonObjesiOlusturma
+Tests.C04_JsonObjesiOlusturma
 
     Asagidaki JSON Objesini olusturup konsolda
     yazdirin.
@@ -47,7 +47,7 @@ C04_JsonObjesiOlusturma
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C05_JsonObjesiOlusturma
+Tests.C05_JsonObjesiOlusturma
 
     Asagidaki JSON Objesini olusturup konsolda
     yazdirin.
@@ -66,7 +66,7 @@ C05_JsonObjesiOlusturma
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C06_Put_ResponseBilgileriAssertion
+Tests.C06_Put_ResponseBilgileriAssertion
 
     https://jsonplaceholder.typicode.com/posts/70 url’ine asagidaki Json formatindaki body ile bir
     PUT request gonderdigimizde
@@ -88,7 +88,7 @@ C06_Put_ResponseBilgileriAssertion
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C07_Get_ResponseBodyTesti
+Tests.C07_Get_ResponseBodyTesti
 
     https://jsonplaceholder.typicode.com/posts/44 url'ine bir GET request yolladigimizda
     donen Response’in
@@ -101,7 +101,7 @@ C07_Get_ResponseBodyTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C08_Post_ResponseBodyTesti
+Tests.C08_Post_ResponseBodyTesti
 
     https://jsonplaceholder.typicode.com/posts url’ine asagidaki body ile bir POST request
     gonderdigimizde
@@ -123,7 +123,7 @@ C08_Post_ResponseBodyTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C09_Get_TestYaparkenTekrarlardanKurtulma
+Tests.C09_Get_TestYaparkenTekrarlardanKurtulma
 
         https://restful-booker.herokuapp.com/booking/10 url’ine bir GET request gonderdigimizde
         donen Response’un,
@@ -139,7 +139,7 @@ C09_Get_TestYaparkenTekrarlardanKurtulma
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C10_JsonPathKullanim
+Tests.C10_JsonPathKullanim
 
         Asagıdakı JSON obje'sını olusturup key'leri yazdırın.
 
@@ -163,7 +163,7 @@ C10_JsonPathKullanim
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C11_Post_JsonPathIleBodyTesti
+Tests.C11_Post_JsonPathIleBodyTesti
 
         https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
         gonderdigimizde
@@ -196,7 +196,7 @@ C11_Post_JsonPathIleBodyTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C12_Get_ResponseBodyTestiListKullanimi
+Tests.C12_Get_ResponseBodyTestiListKullanimi
 
         http://dummy.restapiexample.com/api/v1/employees url'ine bir GET request yolladigimizda
         donen Response'in
@@ -211,7 +211,7 @@ C12_Get_ResponseBodyTestiListKullanimi
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C13_Get_ExpectedDataOlusturmaVeJsonPathIleJunitAssertion
+Tests.C13_Get_JsonPathVeJunitAssertionIleExpectedDataOlusturmaVeTestEtme
 
         https://jsonplaceholder.typicode.com/posts/22 url'ine bir GET request
         yolladigimizda donen response body’sinin asagida verilen ile ayni oldugunutest ediniz
@@ -228,7 +228,7 @@ C13_Get_ExpectedDataOlusturmaVeJsonPathIleJunitAssertion
 
 ------------------------------------------------------------------------------------------------------------------------
 
-C14_Post_ExpectedDataVeJsonPathIleJunitAssertion
+Tests.C14_Post_JsonPathVeJunitAssertionIleExpectedDataTesti
 
         https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
         gonderdigimizde donen response’un id haric asagidaki gibi oldugunu test edin.
@@ -262,6 +262,61 @@ C14_Post_ExpectedDataVeJsonPathIleJunitAssertion
                 },
                 "additionalneeds": "wi-fi"
             }
+        }
+
+------------------------------------------------------------------------------------------------------------------------
+
+Tests.C15_Get_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
+
+        http://dummy.restapiexample.com/api/v1/employee/3 url’ine bir GET request
+        gonderdigimizde donen response’un asagidaki gibi oldugunu test edin.
+
+                Response Body
+            {
+                "status": "success",
+                "data": {
+                    "id": 3,
+                    "employee_name": "Ashton Cox",
+                    "employee_salary": 86000,
+                    "employee_age": 66,
+                    "profile_image": ""
+                },
+                "message": "Successfully! Record has been fetched."
+            }
+
+------------------------------------------------------------------------------------------------------------------------
+
+Tests.C16_Post_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
+
+
+        https://dummy.restapiexample.com/api/v1/create url’ine asagidaki body’ye sahip bir POST
+        request gonderdigimizde donen response’un asagidaki gibi oldugunu test edin.
+
+        Request Body
+
+        {
+            "status": "success",
+            "data": {
+                "name": “Ahmet",
+                "salary": "1230",
+                "age": "44",
+                "id": 40
+            }
+        }
+
+        Response Body
+
+        {
+        "status": "success",
+        "data": {
+            "status": "success",
+            "data": {
+                "name": “Ahmet",
+                "salary": "1230",
+                "age": "44",
+                "id": 40 }
+        },
+        "message": "Successfully! Record has been added."
         }
 
 ------------------------------------------------------------------------------------------------------------------------

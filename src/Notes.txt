@@ -269,7 +269,7 @@
 
      Sonrasında Junit yada TestNG assertion ile test ıslemı gerceklestırılır.
 
-     ORN (Junit Assertion) :
+     ORN (Junit Hard Assertion) :
 
                 JsonPath responseJsonPath = response.jsonPath();
 
@@ -281,7 +281,7 @@
      * kompleks json objelerı ıcın ;
 
      ORN :
-                JsonPath responseJsonPath = response.jsonPath();
+               JsonPath responseJsonPath = response.jsonPath();
 
                Assert.assertEquals(expectedData.getJSONObject("booking").get("firstname"),
                                    responseJsonPath.get("booking.firstname"));
@@ -297,3 +297,36 @@
                                    responseJsonPath.get("booking.bookingdates.checkout"));
                Assert.assertEquals(expectedData.getJSONObject("booking").get("additionalneeds"),
                                    responseJsonPath.get("booking.additionalneeds"));
+
+       ------------------------------------ TestNG ASSERT (Soft Assert) ------------------------------------
+
+   * TestNG dependency pom.xml'e eklenır ve,
+
+     1- SoftAssert objesi olusturulur             --> SoftAssert softAssert = new SoftAssert();
+     2- Istenilen verification yapılır.           --> softAssert.assertTrue();
+     3- SoftAssert'in durumu raporlaması ıstenır. --> softAssert.assertAll();
+
+
+   ORN (TestNG Soft Assertion) :
+
+
+               JsonPath responseJsonPath = response.jsonPath();
+
+               SoftAssert softAssert = new SoftAssert();
+
+               softAssert.assertEquals(responseJsonPath.get("status"),expectedData.get("status"));
+               softAssert.assertEquals(responseJsonPath.get("data.id"),
+                                       expectedData.getJSONObject("data").get("id"));
+               softAssert.assertEquals(responseJsonPath.get("data.employee_name"),
+                                       expectedData.getJSONObject("data").get("employee_name"));
+               softAssert.assertEquals(responseJsonPath.get("data.employee_salary"),
+                                       expectedData.getJSONObject("data").get("employee_salary"));
+               softAssert.assertEquals(responseJsonPath.get("data.employee_age"),
+                                       expectedData.getJSONObject("data").get("employee_age"));
+               softAssert.assertEquals(responseJsonPath.get("data.profile_image"),
+                                       expectedData.getJSONObject("data").get("profile_image"));
+               softAssert.assertEquals(responseJsonPath.get("message"),expectedData.get("message"));
+
+               softAssert.assertAll();
+
+
