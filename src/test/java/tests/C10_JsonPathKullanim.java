@@ -1,6 +1,5 @@
-package Tests;
+package tests;
 
-import io.restassured.http.ContentType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;

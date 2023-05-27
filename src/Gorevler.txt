@@ -34,7 +34,7 @@ C03_Get_ResponseBilgileriAssertion
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C04_JsonObjesiOlusturma
+tests.C04_JsonObjesiOlusturma
 
     Asagidaki JSON Objesini olusturup konsolda
     yazdirin.
@@ -47,7 +47,7 @@ Tests.C04_JsonObjesiOlusturma
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C05_JsonObjesiOlusturma
+tests.C05_JsonObjesiOlusturma
 
     Asagidaki JSON Objesini olusturup konsolda
     yazdirin.
@@ -66,7 +66,7 @@ Tests.C05_JsonObjesiOlusturma
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C06_Put_ResponseBilgileriAssertion
+tests.C06_Put_ResponseBilgileriAssertion
 
     https://jsonplaceholder.typicode.com/posts/70 url’ine asagidaki Json formatindaki body ile bir
     PUT request gonderdigimizde
@@ -88,7 +88,7 @@ Tests.C06_Put_ResponseBilgileriAssertion
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C07_Get_ResponseBodyTesti
+tests.C07_Get_ResponseBodyTesti
 
     https://jsonplaceholder.typicode.com/posts/44 url'ine bir GET request yolladigimizda
     donen Response’in
@@ -101,7 +101,7 @@ Tests.C07_Get_ResponseBodyTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C08_Post_ResponseBodyTesti
+tests.C08_Post_ResponseBodyTesti
 
     https://jsonplaceholder.typicode.com/posts url’ine asagidaki body ile bir POST request
     gonderdigimizde
@@ -123,7 +123,7 @@ Tests.C08_Post_ResponseBodyTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C09_Get_TestYaparkenTekrarlardanKurtulma
+tests.C09_Get_TestYaparkenTekrarlardanKurtulma
 
         https://restful-booker.herokuapp.com/booking/10 url’ine bir GET request gonderdigimizde
         donen Response’un,
@@ -139,7 +139,7 @@ Tests.C09_Get_TestYaparkenTekrarlardanKurtulma
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C10_JsonPathKullanim
+tests.C10_JsonPathKullanim
 
         Asagıdakı JSON obje'sını olusturup key'leri yazdırın.
 
@@ -163,7 +163,7 @@ Tests.C10_JsonPathKullanim
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C11_Post_JsonPathIleBodyTesti
+tests.C11_Post_JsonPathIleBodyTesti
 
         https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
         gonderdigimizde
@@ -196,7 +196,7 @@ Tests.C11_Post_JsonPathIleBodyTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C12_Get_ResponseBodyTestiListKullanimi
+tests.C12_Get_ResponseBodyTestiListKullanimi
 
         http://dummy.restapiexample.com/api/v1/employees url'ine bir GET request yolladigimizda
         donen Response'in
@@ -211,7 +211,7 @@ Tests.C12_Get_ResponseBodyTestiListKullanimi
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C13_Get_JsonPathVeJunitAssertionIleExpectedDataOlusturmaVeTestEtme
+tests.C13_Get_JsonPathVeJunitAssertionIleExpectedDataOlusturmaVeTestEtme
 
         https://jsonplaceholder.typicode.com/posts/22 url'ine bir GET request
         yolladigimizda donen response body’sinin asagida verilen ile ayni oldugunutest ediniz
@@ -228,7 +228,7 @@ Tests.C13_Get_JsonPathVeJunitAssertionIleExpectedDataOlusturmaVeTestEtme
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C14_Post_JsonPathVeJunitAssertionIleExpectedDataTesti
+tests.C14_Post_JsonPathVeJunitAssertionIleExpectedDataTesti
 
         https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
         gonderdigimizde donen response’un id haric asagidaki gibi oldugunu test edin.
@@ -266,7 +266,7 @@ Tests.C14_Post_JsonPathVeJunitAssertionIleExpectedDataTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C15_Get_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
+tests.C15_Get_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
 
         http://dummy.restapiexample.com/api/v1/employee/3 url’ine bir GET request
         gonderdigimizde donen response’un asagidaki gibi oldugunu test edin.
@@ -286,7 +286,7 @@ Tests.C15_Get_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Tests.C16_Post_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
+tests.C16_Post_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
 
 
         https://dummy.restapiexample.com/api/v1/create url’ine asagidaki body’ye sahip bir POST
@@ -318,5 +318,74 @@ Tests.C16_Post_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
         },
         "message": "Successfully! Record has been added."
         }
+
+------------------------------------------------------------------------------------------------------------------------
+
+C17_BaseUrlJsonPlaceHolder
+
+
+        Class icinde 3 Test metodu olusturun ve asagidaki testleri yapin
+
+        1- https://jsonplaceholder.typicode.com/posts endpointine bir GET request gonderdigimizde
+        donen response’un status code’unun 200 oldugunu ve Response’ta 100 kayit oldugunu test
+        edin
+        2- https://jsonplaceholder.typicode.com/posts/44 endpointine bir GET request gonderdigimizde
+        donen response’un status code’unun 200 oldugunu ve “title” degerinin
+        “optio dolor molestias sit” oldugunu test edin
+        3- https://jsonplaceholder.typicode.com/posts/50 endpointine bir DELETE request
+        gonderdigimizde donen response’un status code’unun 200 oldugunu ve response body’sinin
+        null oldugunu test edin
+
+------------------------------------------------------------------------------------------------------------------------
+
+C18_BaseUrlHerokuapp
+
+        Class icinde 2 Test metodu olusturun ve asagidaki testleri yapin
+
+        1- https://restful-booker.herokuapp.com/booking endpointine bir GET request gonderdigimizde
+        donen response’un status code’unun 200 oldugunu ve Response’ta 12 booking oldugunu test
+        edin
+
+
+        2- https://restful-booker.herokuapp.com/booking endpointine
+        asagıdakı body’ye sahip bir POST request gonderdigimizde
+        donen response’un;
+            status code’unun 200 oldugunu ve
+            “firstname” degerinin “Ahmet”
+        oldugunu test edin.
+
+        Request Body :
+
+        {
+            "firstname" : "Ahmet",
+            "lastname" : “Bulut",
+            "totalprice" : 500,
+            "depositpaid" : false,
+            "bookingdates" : {
+                "checkin" : "2021-06-01",
+                "checkout" : "2021-06-10"
+            },
+            "additionalneeds" : "wi-fi"
+        }
+
+------------------------------------------------------------------------------------------------------------------------
+
+C19_BaseUrlHerokuappQueryParam
+
+
+        1- https://restful-booker.herokuapp.com/booking endpointine gerekli Query parametrelerini
+        yazarak
+            “firstname” degeri “Susan” olan rezervasyon oldugunu test edecek bir GET request gonderdigimizde,
+        donen response’un
+            status code’unun 200 oldugunu
+            ve “Susan” ismine sahip 2 booking oldugunu test edin.
+
+        2- https://restful-booker.herokuapp.com/booking endpointine gerekli Query parametrelerini
+        yazarak
+            “firstname” degeri “Susan” ve
+            “lastname” degeri “Jones” olan
+        rezervasyon oldugunu test edecek bir GET request gonderdigimizde, donen response’un
+            status code’unun 200 oldugunu
+            ve “Susan Ericson” ismine sahip en az bir booking oldugunu test edin.
 
 ------------------------------------------------------------------------------------------------------------------------

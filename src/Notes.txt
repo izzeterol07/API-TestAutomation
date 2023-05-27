@@ -329,4 +329,53 @@
 
                softAssert.assertAll();
 
+------------------------------------------------------------------------------------------------------------------------
+
+            ------------------------------------ BaseUrl ------------------------------------
+
+  * Testlerin daha dınamık hale gelebilmesi icin. Framework'u daha da gelıstırmemız gerekmektedir.
+    Base url'de bu degısıklıklerden bırıdır.
+
+    1- BaseUrl adında bır package altında BaseUrl class'ları toplanır.
+    2- BaseUrl adında bır class olusturulur.
+    3- String url olarak url yazmak yerine RequestSpecification class'ından obje olusturulur ve methodları kullanılır.
+
+       protected RequestSpecification specJsonPlaceHolder;
+
+       @Before
+       public void setUp(){
+
+           specJsonPlaceHolder = new RequestSpecBuilder()
+                                                       .setBaseUri("https://jsonplaceholder.typicode.com")
+                                                       .build();
+       }
+
+    4- Sonrasında ilgili test class'ı baseUrl class'ını kendısıne extend eder
+       boylece BaseUrl class'ındakı spec'e erisim saglamıs olur.
+
+    5- Olusturulan spec'ı kullanabılmek ıcın ve BaseUrl (spec)'e param ekleyebılmek ıcın ;
+
+       1- specJsonPlaceHolder.pathParam("pp1","posts");   --> BaseUrl'e verıable'ı ıle param degerını ekledık (key-value)
+
+       2- Response response = given()
+                                     .when().spec(specJsonPlaceHolder) --> spec'ı yanı baseUrl'ı belırttık
+                                     .get("/{pp1}");                   --> url'dekı parametreyı verıable olarak methoda gonderdık
+
+
+
+     * Query param :
+
+        1- specHerokuapp
+                       .pathParam("pp1","booking")
+                       .queryParams("firstname","Susan","lastname","Ericsson");
+
+        2- Response response = given()
+                                       .when().spec(specHerokuapp)
+                                       .get("/{pp1}");
+
+
+
+
+
+
 
