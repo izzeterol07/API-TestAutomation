@@ -373,6 +373,16 @@
                                        .when().spec(specHerokuapp)
                                        .get("/{pp1}");
 
+         ------------------------------------ Test Datası Classı ------------------------------------
+
+     Test Datasi Nedir ? : Bir test sirasinda request ile gonderilen (request body) veya test
+     sonucunda donmesi beklenen datalarin (expected data ve temel response bilgileri) tamamina
+     Test Datasi denir.
+
+     * Test datalarını test datası adı altında olusturdugumuz package'lar ıcınde ılgılı urı'a aıt bılgılerı yazarız
+     * Bu test data class'ları verıable ve methodlar barındırır.
+       Statıc keyword ıle olusturulursa erısımı de statıc yontemden dolayı class adı ıle erısılebılır
+
 
 
 

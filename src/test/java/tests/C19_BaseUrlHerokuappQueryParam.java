@@ -83,5 +83,4 @@ public class C19_BaseUrlHerokuappQueryParam extends BaseUrlHerokuapp {
                 .statusCode(200)
                 .body("bookingid",Matchers.hasSize(1));
     }
-
 }
