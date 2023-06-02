@@ -509,3 +509,89 @@ C24_Post_KompleksTestDataKullanimiDinamik
                 }
 
 ------------------------------------------------------------------------------------------------------------------------
+
+C25_Put_DeSerialization (MAP Kullanımı ile)
+
+
+        https://jsonplaceholder.typicode.com/posts/70 url'ine asagidaki body’e sahip bir PUT
+        request yolladigimizda donen response’in response body’sinin asagida verilen ile ayni
+        oldugunu test ediniz
+
+                Request Body
+
+        {
+            "title": "Ahmet",
+            "body": "Merhaba",
+            "userId": 10,
+            "id": 70
+        }
+
+                Expected Data :
+
+        {
+            "title": "Ahmet",
+            "body": "Merhaba",
+            "userId": 10,
+            "id": 70
+        }
+
+------------------------------------------------------------------------------------------------------------------------
+
+C27_Post_Deserialization (Map Kullanımı)
+
+
+        https://restful-booker.herokuapp.com/booking url’ine asagidaki body'ye sahip bir POST request
+        gonderdigimizde donen response’un id haric asagidaki gibi oldugunu test edin.
+
+        Request body
+        {
+            "firstname" : "Ahmet",
+            "lastname" : “Bulut",
+            "totalprice" : 500,
+            "depositpaid" : false,
+            "bookingdates" : {
+                "checkin" : "2021-06-01",
+                "checkout" : "2021-06-10"
+            },
+            "additionalneeds" : "wi-fi"
+        }
+
+        Response Body // expected data
+        {
+            "bookingid": 24,
+            "booking": {
+                "firstname": "Ahmet",
+                "lastname": "Bulut",
+                "totalprice": 500,
+                "depositpaid": false,
+                "bookingdates": {
+                    "checkin": "2021-06-01",
+                    "checkout": "2021-06-10"
+                },
+                "additionalneeds": "wi-fi"
+            }
+        }
+
+------------------------------------------------------------------------------------------------------------------------
+
+C26_Get_DeSerialization (Map kullanımı ile)
+
+        http://dummy.restapiexample.com/api/v1/employee/3 url’ine bir GET request
+        gonderdigimizde donen response’un status code’unun 200, content Type’inin application/json
+        ve body’sinin asagidaki gibi oldugunu test edin.
+
+
+               Expected Response Body
+        {
+            "status": "success",
+            "data": {
+                "id": 3,
+                "employee_name": "Ashton Cox",
+                "employee_salary": 86000,
+                "employee_age": 66,
+                "profile_image": ""
+            },
+            "message": "Successfully! Record has been fetched."
+        }
+
+------------------------------------------------------------------------------------------------------------------------

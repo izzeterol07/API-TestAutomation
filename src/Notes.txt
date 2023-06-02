@@ -383,6 +383,55 @@
      * Bu test data class'ları verıable ve methodlar barındırır.
        Statıc keyword ıle olusturulursa erısımı de statıc yontemden dolayı class adı ıle erısılebılır
 
+------------------------------------------------------------------------------------------------------------------------
+
+  * REST API’da istenen veri türüyle işlem yapabilir, ancak JSON veri tipi ile diger data turlerine gore çok
+    daha düşük boyutlarda veri kullanildigindan genellikle JSONObject kullanimi tercih edilir.
+
+  * JSONObject ile tum testlerimizi yapabiliyoruz, ancak Json objesi bir Java objesi degildir.
+
+  * Biz, org.json ve io.restassured kutuphanelerini kullanarak Json objeleri ile islem yapabiliyoruz.
+
+  * Is hayatimizda tamamen Java objeleri kullanarak test yapmamiz istenebilir veya karsimiza cikacak kompleks
+    Json datalarini API testimizde kullanmak uzere tek tek yazarak olusturmak zor olabilir.
+
+    Bu durumda Java’dan yararlanarak ve farkli teknikler kullanarak test datalarimizi olusturabilir ve bu datalari
+    kullanarak testlerimizi yapabiliriz.
+
+
+  - Serialization : Java objelerini API sorgulari yapmak uzere Json objesine cevirmeye denir.
+  - De-Serialization : Verilen Json objesini testlerimizde kullanmak uzere Java objesine cevirmeye denir.
+
+                -------------- De-Serialization Kullanımı (JSONObject'ten Map'e cevirme) -------------
+
+  * JSONObject key-value ikililerini kullandigi icin De-Serialization islemi icin Java’dan kullanacagimiz en
+    uygun data turu Map’tir.
+
+  * Olusturacagimiz Request body veya expected datayi direk Map olarak olusturabiliriz.
+
+  * Sorgumuz sonucunda donen response objesini De-Serialization ile Map’e cevirmek icin
+    Gson kutuphanesinden yararlanabiliriz. (Bunun icin Gson dependency’yi pom xml’e eklemeliyiz).
+
+    * Test Data Class'ında Map donduren body olusturma methodları kullanılarak request ve expected datalar aynı sekılde
+      olusturulur.
+
+    * Map<String, Object> responseMap = response.as(HashMap.class); --> Response'ı Map e cevırmek ıcın kullanılan method
+      Boylece assertion yapabılırız.
+
+                -------------- Serialization Kullanımı (Map'ten JSONObject'e cevirme)  -------------
+
+  * Map’i JSONObject’e cevirmek icin de Gson Class’indan yardim aliriz. Gson Class’indaki metodlari
+    kullanmak icin once o Class’dan bir object olustururuz.
+
+    Olusturdugumuz gson objesi ile gson.toJson(actualDataMap); metodunu kullanarak, map’i
+    JSONObject olarak kullanabilecegimiz String formatina ceviririz.
+
+            Gson gson = new Gson();
+            String jsonFromJavaObject = gson.toJson(actualDataMap);
+
+------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
