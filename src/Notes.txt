@@ -40,7 +40,7 @@
   ______________ Test icin her zaman yapılacak olan 4 adım ___________
 
     1- Request body ve end-point hazırlama
-    2- Expected data hazırlama
+    2- Expected pojoDummyExampleData hazırlama
     3- Request gonderip, donen response'i kaydetme
     4- Assertion islemleri
 
@@ -62,7 +62,7 @@
 
   ________________________________ JSON Object Olusturma _________________________________
 
-  * Json Objesı olusturmak ıcın JSONObject data turunde bır obje olusturmak gerekır.
+  * Json Objesı olusturmak ıcın JSONObject pojoDummyExampleData turunde bır obje olusturmak gerekır.
 
   ORN:
         JSONObject obj1 = new JSONObject();
@@ -99,7 +99,7 @@
     ORN :
 
         Response response = given()
-                                .contentType(ContentType.JSON) --> Body data tipini secerız
+                                .contentType(ContentType.JSON) --> Body pojoDummyExampleData tipini secerız
                                 .when()
                                 .body(requestBody.toString())  --> body'nın hangısı oldugunu Strıng'e cevırerek belırtırız
                                 .put(url);
@@ -162,7 +162,7 @@
    Birden fazla json objesı mevcutsa en dıs objeler olusturulur,
    sonrasında ıcerısındekı objeler yerlestırılır.
 
-   Eger Json Array objesı varsa JSONArray data turunden bır JsonArray objesı olusturulur.
+   Eger Json Array objesı varsa JSONArray pojoDummyExampleData turunden bır JsonArray objesı olusturulur.
 
    ORN :
 
@@ -258,9 +258,9 @@
                     .assertThat()
                     .statusCode(200)
                     .contentType(ContentType.JSON)
-                    .body("data.id", hasSize(24),
-                            "data.employee_name",hasItem("Ashton Cox"),
-                            "data.employee_age",hasItems(61,21,35));
+                    .body("pojoDummyExampleData.id", hasSize(24),
+                            "pojoDummyExampleData.employee_name",hasItem("Ashton Cox"),
+                            "pojoDummyExampleData.employee_age",hasItems(61,21,35));
 
        ------------------------------------ JUnit ASSERT (Hard Assert) ------------------------------------
 
@@ -315,16 +315,16 @@
                SoftAssert softAssert = new SoftAssert();
 
                softAssert.assertEquals(responseJsonPath.get("status"),expectedData.get("status"));
-               softAssert.assertEquals(responseJsonPath.get("data.id"),
-                                       expectedData.getJSONObject("data").get("id"));
-               softAssert.assertEquals(responseJsonPath.get("data.employee_name"),
-                                       expectedData.getJSONObject("data").get("employee_name"));
-               softAssert.assertEquals(responseJsonPath.get("data.employee_salary"),
-                                       expectedData.getJSONObject("data").get("employee_salary"));
-               softAssert.assertEquals(responseJsonPath.get("data.employee_age"),
-                                       expectedData.getJSONObject("data").get("employee_age"));
-               softAssert.assertEquals(responseJsonPath.get("data.profile_image"),
-                                       expectedData.getJSONObject("data").get("profile_image"));
+               softAssert.assertEquals(responseJsonPath.get("pojoDummyExampleData.id"),
+                                       expectedData.getJSONObject("pojoDummyExampleData").get("id"));
+               softAssert.assertEquals(responseJsonPath.get("pojoDummyExampleData.employee_name"),
+                                       expectedData.getJSONObject("pojoDummyExampleData").get("employee_name"));
+               softAssert.assertEquals(responseJsonPath.get("pojoDummyExampleData.employee_salary"),
+                                       expectedData.getJSONObject("pojoDummyExampleData").get("employee_salary"));
+               softAssert.assertEquals(responseJsonPath.get("pojoDummyExampleData.employee_age"),
+                                       expectedData.getJSONObject("pojoDummyExampleData").get("employee_age"));
+               softAssert.assertEquals(responseJsonPath.get("pojoDummyExampleData.profile_image"),
+                                       expectedData.getJSONObject("pojoDummyExampleData").get("profile_image"));
                softAssert.assertEquals(responseJsonPath.get("message"),expectedData.get("message"));
 
                softAssert.assertAll();
@@ -376,16 +376,16 @@
          ------------------------------------ Test Datası Classı ------------------------------------
 
      Test Datasi Nedir ? : Bir test sirasinda request ile gonderilen (request body) veya test
-     sonucunda donmesi beklenen datalarin (expected data ve temel response bilgileri) tamamina
+     sonucunda donmesi beklenen datalarin (expected pojoDummyExampleData ve temel response bilgileri) tamamina
      Test Datasi denir.
 
      * Test datalarını test datası adı altında olusturdugumuz package'lar ıcınde ılgılı urı'a aıt bılgılerı yazarız
-     * Bu test data class'ları verıable ve methodlar barındırır.
+     * Bu test pojoDummyExampleData class'ları verıable ve methodlar barındırır.
        Statıc keyword ıle olusturulursa erısımı de statıc yontemden dolayı class adı ıle erısılebılır
 
 ------------------------------------------------------------------------------------------------------------------------
 
-  * REST API’da istenen veri türüyle işlem yapabilir, ancak JSON veri tipi ile diger data turlerine gore çok
+  * REST API’da istenen veri türüyle işlem yapabilir, ancak JSON veri tipi ile diger pojoDummyExampleData turlerine gore çok
     daha düşük boyutlarda veri kullanildigindan genellikle JSONObject kullanimi tercih edilir.
 
   * JSONObject ile tum testlerimizi yapabiliyoruz, ancak Json objesi bir Java objesi degildir.
@@ -405,7 +405,7 @@
                 -------------- De-Serialization Kullanımı (JSONObject'ten Map'e cevirme) -------------
 
   * JSONObject key-value ikililerini kullandigi icin De-Serialization islemi icin Java’dan kullanacagimiz en
-    uygun data turu Map’tir.
+    uygun pojoDummyExampleData turu Map’tir.
 
   * Olusturacagimiz Request body veya expected datayi direk Map olarak olusturabiliriz.
 
@@ -431,9 +431,62 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
+                        -------------- POJO CLASS KULLANIMI --------------
 
+    Pojo : Plain Old Java Object (Basit java objesi)
 
+    Kompleks request veya response body’lerini olusturmak uzun islem
+    gerektirebilir.
 
+    Daha once yaptigimiz orneklerde TestData Class’lari olusturmus
+    ve tum datalarimizi bu class’larda olusturmustuk.
+
+    Pojo kullaniminda her bir Json Objesi icin method degil
+    Class olusturacagiz.
+
+    Pojo kullaniminda Java’daki encapsulation ozellikleri kullanilir
+    Kompleks Json objeleri icin otomatik olarak Pojo Class’lari
+    olusturan web-sitelerinden yardim alabiliriz.
+
+    Basit yapidaki Json objeleri icin kendimiz de Pojo Class’lari
+    olusturabiliriz.
+
+    * Bir POJO Class olusturmak icin, 5 adima ihtiyacimiz var
+
+      1- Tum variable’lari "private" olarak olusturalim
+      2- Tum variable’lar icin getter( ) and setter( ) metodlari
+         olusturalim
+      4- Tum parametreleri iceren bir constructor olusturalim
+      5- Default constructor (parametresiz) olusturalim
+      6- toString( ) metodu olusturalim
+
+    * Test class'ında requestBody, ExpectedData, ResponseBody olusturulur.
+
+        - requestBody olusturulan ılıgılı Pojo class'ından olusturulur.
+            PojoJsonPlaceholder requestBodyPojo = new PojoJsonPlaceholder("Ahmet","Merhaba",10,70);
+
+        - expectedData olusturulan ılgılı Pojo class'ından olusturulur.
+            PojoJsonPlaceholder expectedDataPojo = new PojoJsonPlaceholder("Ahmet","Merhaba",10,70);
+
+        - responseBody json object'ı ılgılı Pojo class'ına donusturulerek olusturulur.
+            PojoJsonPlaceholder responsePojo = response.as(PojoJsonPlaceholder.class);
+
+POJO CLASS ICIN CONVERTOR KULLANMA
+
+ * https://www.jsonschema2pojo.org/ sıtesı gıbı sıtelerden donusturulmek ıstenen json objesı donusturulebılır.
+
+   Sonrasında projemızde aynı ısımde class'lar olusturulur ve ıcıne aktarılır. Sonrakı ıslemler oncekılerle aynıdır.
+
+   Sadece ilgili api'nın json objesının attrıbute degerlerı ıle pojoya cevırmede olusan attrıbute degerlerı
+   aynı formatta olmayabılır. orn: employee_name , employeeName seklınde.
+   Boyle durumlarda donen response'ı pojoya cevırırsek karsılıgı olmayacaktır.
+   Bız de oncekı kullanımlarımızdan JSONPath'e verırerek assertion yaparız.
+
+   Yani ;
+   Response'ı pojo'ya cevırdıgımızde tum bılgılerı getırırse
+   responsePojo'yu assertıon'da kullanabılırız.
+   Eger null deger donerse, response'ı JsonPath yapıp assertion'da kullanabılırız.
+------------------------------------------------------------------------------------------------------------------------
 
 
 

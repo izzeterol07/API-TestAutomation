@@ -274,7 +274,7 @@ tests.C15_Get_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
                 Response Body
             {
                 "status": "success",
-                "data": {
+                "pojoDummyExampleData": {
                     "id": 3,
                     "employee_name": "Ashton Cox",
                     "employee_salary": 86000,
@@ -296,7 +296,7 @@ tests.C16_Post_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
 
         {
             "status": "success",
-            "data": {
+            "pojoDummyExampleData": {
                 "name": “Ahmet",
                 "salary": "1230",
                 "age": "44",
@@ -308,9 +308,9 @@ tests.C16_Post_JsonPathVeTestNGSoftAssertionIleExpectedDataTesti
 
         {
         "status": "success",
-        "data": {
+        "pojoDummyExampleData": {
             "status": "success",
-            "data": {
+            "pojoDummyExampleData": {
                 "name": “Ahmet",
                 "salary": "1230",
                 "age": "44",
@@ -460,7 +460,7 @@ C23_Get_KompleksTestDataKullanimiDinamik
         Response Body :
         {
             "status": "success",
-            "data": {
+            "pojoDummyExampleData": {
                 "id": 3,
                 "employee_name": "Ashton Cox",
                 "employee_salary": 86000,
@@ -556,7 +556,7 @@ C27_Post_Deserialization (Map Kullanımı)
             "additionalneeds" : "wi-fi"
         }
 
-        Response Body // expected data
+        Response Body // expected pojoDummyExampleData
         {
             "bookingid": 24,
             "booking": {
@@ -584,7 +584,7 @@ C26_Get_DeSerialization (Map kullanımı ile)
                Expected Response Body
         {
             "status": "success",
-            "data": {
+            "pojoDummyExampleData": {
                 "id": 3,
                 "employee_name": "Ashton Cox",
                 "employee_salary": 86000,
